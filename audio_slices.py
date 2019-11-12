@@ -33,7 +33,7 @@ class AudioLoad():
 
 
 
-class AudioBeeSplit():
+class AudioSplit():
 
 	def __init__(self, path_origin , path_destination , class_name ,time_duration_slice):
 
@@ -90,5 +90,5 @@ class AudioBeeSplit():
 
 
 
-# queenBee = AudioBeeSplit("bee","bee/slices","QueenBee",60000)
-# queenBee.generate_splits()
+queenBee = AudioSplit("bee","bee/slices","QueenBee",60000)
+queenBee.generate_splits()
