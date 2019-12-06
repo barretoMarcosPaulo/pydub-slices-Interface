@@ -4,7 +4,7 @@
 
 ## 1. Descrição
 
-O projeto consiste em uma interface para a utilização da biblioteca *__pydub__* afim de facilitar e automatizar o processo de cortes em arquivos de áudio. Dado um diretório o programa é capaz de realizar o máximo de cortes possíveis em uma determinada faixa de tempo. Cada corte gerado é renomeado de acordo com o nome do arquivo original e exportado para um novo diretório automaticamente.
+O projeto consiste em uma interface para a utilização da biblioteca *__pydub__* a fim de facilitar e automatizar o processo de cortes em arquivos de áudio. Dado um diretório o programa é capaz de realizar o máximo de cortes possíveis em uma determinada faixa de tempo. Cada corte gerado é renomeado de acordo com o nome do arquivo original e exportado para um novo diretório automaticamente.
 
 ## 2. Dependências
 
