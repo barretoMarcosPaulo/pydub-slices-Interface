@@ -20,15 +20,14 @@ class AudioLoad():
 
 	def get_name_file(self):
 		
-		name = self.file.split("/")[1]
+		name = self.file.split("/")[-1]
 		name = name.split(".")[0]
 		return name
 
 	def get_number_slices(self):
 
 		number_of_slices = self.time_in_miliseconds // 60000
-		if self.time_in_miliseconds % 60000 != 0:
-			number_of_slices+=1
+
 		return int(number_of_slices)
 
 
@@ -58,7 +57,7 @@ class AudioSplit():
 				audio_slice=audio.audio_object[start_slice:end_slice]
 				
 				destination_slice = self.folder_destination+"/"+audio.name+"__split__{}".format(i)
-				audio_slice.export(destination_slice,format="wav")
+				audio_slice.export(destination_slice+".wav",format="wav")
 
 				start_slice = end_slice
 				end_slice+=self.time_duration
@@ -90,5 +89,5 @@ class AudioSplit():
 
 
 
-queenBee = AudioSplit("bee","bee/slices","QueenBee",60000)
+queenBee = AudioSplit("../dataset","../dataset/slices","QueenBee",60000)
 queenBee.generate_splits()
