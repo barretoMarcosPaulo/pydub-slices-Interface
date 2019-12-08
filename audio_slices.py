@@ -5,7 +5,7 @@ from pydub.playback import play
 import time
 import sys
 import os
-
+from tqdm import tqdm
 
 class AudioLoad():
 
@@ -45,25 +45,25 @@ class AudioSplit():
 
 	def generate_splits(self):
 
-		for audio in self.audios_segments:
+		for x in tqdm(range(len(self.audios_segments))):
 			
 			start_slice = 0	
 			end_slice = self.time_duration
 			
-			print("[Wait] Gerando todos os slipts possiveis ",audio.name)
+			#print("[Wait] Gerando todos os slipts possiveis ",self.audios_segments[x].name)
 
-			for i in range(audio.number_of_slices):
+			for i in range(self.audios_segments[x].number_of_slices):
 				
-				audio_slice=audio.audio_object[start_slice:end_slice]
+				audio_slice=self.audios_segments[x].audio_object[start_slice:end_slice]
 				
-				destination_slice = self.folder_destination+"/"+audio.name+"__split__{}".format(i)
+				destination_slice = self.folder_destination+"/"+self.audios_segments[x].name+"__split__{}".format(i)
 				audio_slice.export(destination_slice+".wav",format="wav")
 
 				start_slice = end_slice
 				end_slice+=self.time_duration
 
-			print("[Ok] - Finalizado slipt do audio atual")
-			print("+----------------------------------------------------------------+")
+			#print("[Ok] - Finalizado slipt do audio atual")
+			#print("+----------------------------------------------------------------+")
 
 		print("[Finalized] Todos os splits da classe {} foram finaliados ".format(self.class_name))
 		slices_path = os.listdir(self.folder_destination)
@@ -77,9 +77,9 @@ class AudioSplit():
 		print("[Start] Iniciando a classe ", self.class_name)
 		print("[Wait] Carregando os audios ({})".format(self.folder_with_files))
 		
-		for file in files:
-			if ".wav" in file:
-				local_file = self.folder_with_files+"/"+file
+		for i in tqdm(range(len(files))):
+			if ".wav" in files[i]:
+				local_file = self.folder_with_files+"/"+files[i]
 				audio  = AudioLoad(local_file)
 				audios_list.append(audio)
 
@@ -89,5 +89,5 @@ class AudioSplit():
 
 
 
-queenBee = AudioSplit("../dataset","../dataset/slices","QueenBee",60000)
+queenBee = AudioSplit("../audios","../slices","QueenBee",60000)
 queenBee.generate_splits()
